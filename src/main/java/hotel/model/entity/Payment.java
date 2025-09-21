@@ -1,5 +1,6 @@
 package hotel.model.entity;
 
+import com.google.gson.Gson;
 import hotel.model.enums.PaymentStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,12 @@ public class Payment {
     private Date date;
     private PaymentStatus paymentStatus;
 
-    public boolean processPayment() {
-        if (this.paymentStatus == PaymentStatus.PENDING) {
-            this.paymentStatus = PaymentStatus.PAID;
-            return true;
-        }
-        return false;
+    //processPayment()
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
+
 }

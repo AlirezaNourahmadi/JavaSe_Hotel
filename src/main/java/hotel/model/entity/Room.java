@@ -1,5 +1,6 @@
 package hotel.model.entity;
 
+import com.google.gson.Gson;
 import hotel.model.enums.RoomStatus;
 import hotel.model.enums.RoomType;
 import lombok.Getter;
@@ -16,9 +17,11 @@ public class Room {
     private int pricePerNight;
     private int capacity;
 
-    public boolean isAvailable() {
-        //ساده شده ی if else
-        return status == RoomStatus.AVAILABLE;
+   // isAvailable()
+   @Override
+   public String toString() {
+       Gson gson = new Gson();
+       return gson.toJson(this);
+   }
 
-    }
 }
