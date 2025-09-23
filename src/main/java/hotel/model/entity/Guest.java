@@ -31,7 +31,6 @@ public class Guest {
             System.out.println("Reservation not found for guest: " + name);
         }
     }
-
     @Override
     public String toString() {
         return "Guest {" +
