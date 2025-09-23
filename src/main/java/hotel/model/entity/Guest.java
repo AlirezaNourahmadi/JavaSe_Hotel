@@ -12,7 +12,6 @@ public class Guest {
     private String name;
     private String phone;
     private List<Reservation> reservations = new ArrayList<>();
-
     public Guest(int guestId, String name, String phone, List<Reservation> reservations) {
         this.guestId = guestId;
         this.name = name;
