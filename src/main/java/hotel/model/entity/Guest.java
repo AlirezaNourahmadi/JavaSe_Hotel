@@ -2,7 +2,6 @@ package hotel.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ public class Guest {
     private String phone;
     private List<Reservation> reservations = new ArrayList<>();
 
-    // Constructor
     public Guest(int guestId, String name, String phone, List<Reservation> reservations) {
         this.guestId = guestId;
         this.name = name;
@@ -22,7 +20,6 @@ public class Guest {
         this.reservations = reservations != null ? reservations : new ArrayList<>();
     }
 
-    // Add a reservation
     public void addReservation(Reservation reservation) {
         if (this.reservations == null) {
             this.reservations = new ArrayList<>();
@@ -30,7 +27,6 @@ public class Guest {
         this.reservations.add(reservation);
     }
 
-    // Cancel reservation
     public void cancelReservation(Reservation reservation) {
         if (reservations.contains(reservation)) {
             reservations.remove(reservation);
