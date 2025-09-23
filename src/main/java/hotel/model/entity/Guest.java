@@ -1,4 +1,4 @@
-package model.entity;
+package hotel.model.entity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
