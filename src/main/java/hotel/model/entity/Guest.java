@@ -20,7 +20,6 @@ public class Guest implements java.io.Serializable {
         this.reservations = new ArrayList<>();
     }
 
-    // All-argument constructor with validation
     public Guest(int guestId, String name, String phone, List<Reservation> reservations) {
         if (guestId <= 0) {
             throw new IllegalArgumentException("Guest ID must be positive");
@@ -37,7 +36,6 @@ public class Guest implements java.io.Serializable {
         this.reservations = reservations != null ? new ArrayList<>(reservations) : new ArrayList<>();
     }
 
-    // Getters and setters
     public int getGuestId() {
         return guestId;
     }
@@ -72,7 +70,7 @@ public class Guest implements java.io.Serializable {
     }
 
     public List<Reservation> getReservations() {
-        return Collections.unmodifiableList(reservations); // Protect internal list
+        return Collections.unmodifiableList(reservations);
     }
 
     public void setReservations(List<Reservation> reservations) {
