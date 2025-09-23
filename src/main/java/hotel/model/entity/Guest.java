@@ -91,7 +91,7 @@ public class Guest implements java.io.Serializable {
     public void removeReservation(Reservation reservation) {
         this.reservations.remove(reservation);
     }
-    
+
     @Override
     public String toString() {
         return "Guest{" +
