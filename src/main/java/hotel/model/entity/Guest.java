@@ -16,7 +16,6 @@ public class Guest {
         this.phone = phone;
         this.reservations = reservations != null ? reservations : new ArrayList<>();
     }
-
     public void addReservation(Reservation reservation) {
         if (this.reservations == null) {
             this.reservations = new ArrayList<>();
