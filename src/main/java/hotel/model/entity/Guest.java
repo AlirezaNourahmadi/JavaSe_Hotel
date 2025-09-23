@@ -1,5 +1,4 @@
 package hotel.model.entity;
-
 import lombok.Getter;
 import lombok.Setter;
 import java.util.ArrayList;
