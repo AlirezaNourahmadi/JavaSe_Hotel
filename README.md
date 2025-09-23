@@ -32,6 +32,7 @@
 - علیرضا:
     - AbstractHotel
     - Branch
+    - Person
     - آماده‌سازی ساختار پروژه و گیتهاب
 - شایان:
     - Room
