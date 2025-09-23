@@ -12,7 +12,7 @@ public class Guest implements java.io.Serializable {
     private String phone;
     private List<Reservation> reservations;
 
-    // No-argument constructor
+
     public Guest() {
         this.guestId = 0;
         this.name = "";
@@ -79,7 +79,7 @@ public class Guest implements java.io.Serializable {
         this.reservations = reservations != null ? new ArrayList<>(reservations) : new ArrayList<>();
     }
 
-    // Method to add a reservation
+
     public void addReservation(Reservation reservation) {
         if (reservation == null) {
             throw new IllegalArgumentException("Reservation cannot be null");
@@ -87,12 +87,11 @@ public class Guest implements java.io.Serializable {
         this.reservations.add(reservation);
     }
 
-    // Method to remove a reservation
+
     public void removeReservation(Reservation reservation) {
         this.reservations.remove(reservation);
     }
-
-    // Override toString for debugging
+    
     @Override
     public String toString() {
         return "Guest{" +
@@ -103,7 +102,6 @@ public class Guest implements java.io.Serializable {
                 '}';
     }
 
-    // Override equals for object comparison
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,7 +113,6 @@ public class Guest implements java.io.Serializable {
                 Objects.equals(reservations, guest.reservations);
     }
 
-    // Override hashCode for use in collections
     @Override
     public int hashCode() {
         return Objects.hash(guestId, name, phone, reservations);
