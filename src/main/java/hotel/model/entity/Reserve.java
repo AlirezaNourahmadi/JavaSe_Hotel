@@ -1,5 +1,6 @@
 package hotel.model.entity;
 
+import com.google.gson.Gson;
 import hotel.model.enums.ReservationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +20,15 @@ public class Reserve {
     private ReservationStatus status;
     private Payment payment;
 
-    public void confirm() {
-        this.status = ReservationStatus.CONFIRMED;
+    //confirm(), cancel(), update()
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
-    public void cancel() {
-        this.status = ReservationStatus.CANCELED;
-    }
 
-    public void update() {
-        this.status = ReservationStatus.UPDATED;
-    }
+
+
 }
