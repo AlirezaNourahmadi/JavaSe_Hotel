@@ -45,7 +45,6 @@ public class Guest {
                 ", Reservations=" + reservations.size() +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,7 +52,6 @@ public class Guest {
         Guest guest = (Guest) o;
         return guestId == guest.guestId;
     }
-
     @Override
     public int hashCode() {
         return Integer.hashCode(guestId);
