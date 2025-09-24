@@ -1,7 +1,7 @@
 package hotel.model.entity;
 
 import com.google.gson.Gson;
-import hotel.model.enums.ReservationStatus;
+import hotel.model.entity.enums.ReservationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

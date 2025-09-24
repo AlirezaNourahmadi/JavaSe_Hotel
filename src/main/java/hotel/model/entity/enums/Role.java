@@ -1,4 +1,4 @@
-package hotel.model.enums;
+package hotel.model.entity.enums;
 
 public enum Role {
     RECEPTIONIST,

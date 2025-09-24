@@ -1,6 +1,6 @@
 package hotel.model.entity;
 
-import hotel.model.enums.Role;
+import hotel.model.entity.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 

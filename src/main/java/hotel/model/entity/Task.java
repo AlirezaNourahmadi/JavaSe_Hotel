@@ -1,6 +1,6 @@
 package hotel.model.entity;
 
-import hotel.model.enums.TaskStatus;
+import hotel.model.entity.enums.TaskStatus;
 import lombok.Getter;
 import lombok.Setter;
 
