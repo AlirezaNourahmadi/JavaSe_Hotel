@@ -5,13 +5,14 @@ import hotel.model.entity.enums.ReservationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-
+@SuperBuilder
 public class Reserve {
     private int reserveId;
     private Date checkin;

@@ -2,12 +2,16 @@ package hotel.model.entity;
 
 import hotel.model.entity.enums.TaskStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
+@SuperBuilder
 public class Task {
     private int taskId;
     private String description;

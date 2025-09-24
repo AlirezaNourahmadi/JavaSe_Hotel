@@ -2,14 +2,18 @@ package hotel.model.entity;
 
 import hotel.model.entity.enums.Role;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
+@SuperBuilder
 public class Employee {
     private int employeeId;
     private String employeeName;

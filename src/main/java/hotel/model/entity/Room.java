@@ -6,10 +6,12 @@ import hotel.model.entity.enums.RoomType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@SuperBuilder
 public class Room {
     private int roomId;
     private RoomType type;

@@ -1,9 +1,18 @@
 package hotel.model.entity;
 
 import com.google.gson.Gson;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@SuperBuilder
 public class Person {
 
     private int id;
@@ -13,6 +22,8 @@ public class Person {
     private LocalDate birthDate;
     private String phone;
     private String address;
+    private String userName;
+    private String password;
 
 
 
