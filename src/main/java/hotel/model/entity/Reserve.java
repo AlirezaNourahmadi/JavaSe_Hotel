@@ -1,7 +1,7 @@
 package hotel.model.entity;
 
 import com.google.gson.Gson;
-import hotel.model.entity.enums.ReservationStatus;
+import hotel.model.entity.enums.ReserveStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class Reserve {
     private Date checkin;
     private Date checkout;
     private int numberOfGuests;
-    private ReservationStatus status;
+    private ReserveStatus status;
     private Payment payment;
 
     //confirm(), cancel(), update()

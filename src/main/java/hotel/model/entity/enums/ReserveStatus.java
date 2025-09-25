@@ -1,6 +1,6 @@
 package hotel.model.entity.enums;
 
-public enum ReservationStatus {
+public enum ReserveStatus {
     CONFIRMED,
     CANCELED,
     UPDATED,
