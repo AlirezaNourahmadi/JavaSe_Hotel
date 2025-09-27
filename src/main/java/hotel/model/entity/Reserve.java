@@ -2,13 +2,8 @@ package hotel.model.entity;
 
 import com.google.gson.Gson;
 import hotel.model.entity.enums.ReserveStatus;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
-
 
 @Getter
 @Setter
@@ -16,21 +11,19 @@ import java.time.LocalDate;
 @SuperBuilder
 public class Reserve {
     private int reserveId;
-    private LocalDate checkin;
-    private LocalDate checkout;
+    private String checkin;
+    private String checkout;
     private int numberOfGuests;
     private ReserveStatus status;
     private Payment payment;
 
-    //confirm(), cancel(), update()
+    public void confirm() { this.status = ReserveStatus.CONFIRMED; }
+    public void cancel() { this.status = ReserveStatus.CANCELED; }
+    public void update() { this.status = ReserveStatus.UPDATED; }
 
     @Override
     public String toString() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-
-
-
-
 }
