@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Branches(
 
 CREATE TYPE room_status AS ENUM ('AVAILABLE', 'RESERVED', 'MAINTENANCE');
 CREATE TABLE IF NOT EXISTS Rooms(
-                                    room_id SERIAL PRIMARY KEY,
+                                    room_id INTEGER PRIMARY KEY,
                                     type VARCHAR(100) NOT NULL,
                                     status room_status DEFAULT 'AVAILABLE',
                                     price_per_night INTEGER NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Rooms(
 CREATE TYPE payment_status AS ENUM ('PAYMENT', 'PAID', 'CANCELED');
 CREATE TYPE payment_paymentType AS ENUM ('CASH', 'CARD', 'ONLINE');
 CREATE TABLE IF NOT EXISTS Payments(
-                                       receipt_id SERIAL PRIMARY KEY,
+                                       receipt_id INTEGER PRIMARY KEY,
                                        amount NUMERIC NOT NULL,
                                        payment_date DATE,
                                        status payment_status,
@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS Payments(
 
 CREATE TYPE reserve_status AS ENUM ('CONFIRMED', 'CANCELED', 'UPDATED','PENDING');
 CREATE TABLE IF NOT EXISTS Reserves(
-                                       reserve_id SERIAL PRIMARY KEY,
+                                       reserve_id INTEGER PRIMARY KEY,
                                        check_in DATE,
                                        check_out DATE,
                                        number_of_guests INTEGER,
                                        status reserve_status DEFAULT 'PENDING',
-                                       payment_id INT REFERENCES Payments(receipt_id)   /* برای اتصال مستقیم به جدول payments */
+                                       payment_id INTEGER REFERENCES Payments(receipt_id)   /* برای اتصال مستقیم به جدول payments */
 );
 

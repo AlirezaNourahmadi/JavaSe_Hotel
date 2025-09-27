@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class Employee {
+public class Employee extends Person {
+    private Person personId;
     private int employeeId;
     private String employeeName;
     private Role role;
@@ -26,36 +27,6 @@ public class Employee {
 
 
 
-    public Employee(int employeeId, String employeeName, Role role, double salary, LocalDate hireDate, List<Task> tasks) {
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.role = role;
-        this.salary = salary;
-        this.hireDate = hireDate;
-        this.tasks = tasks;
-    }
 
 
-    public void addTask(Task task) {
-        if (this.tasks == null) {
-            this.tasks = new ArrayList<>();
-        }
-        this.tasks.add(task);
-    }
-
-    public void performTask(Task task) {
-        if (tasks.contains(task)) {
-            task.startTask();
-            System.out.println(employeeName + "started task: " + task.getDescription());
-        }else{
-            System.out.println(employeeName + " has not been assigned task: ");
-        }
-    }
-
-
-    @Override
-    public String toString(){
-        return "Employee Id: " + employeeId + " Employee: " + employeeName + " Role: " + role + " Salary: " + salary + " Hire Date: " + hireDate;
-
-    }
 }

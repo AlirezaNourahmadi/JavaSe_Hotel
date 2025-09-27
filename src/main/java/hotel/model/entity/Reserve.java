@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ import java.util.Date;
 @SuperBuilder
 public class Reserve {
     private int reserveId;
-    private Date checkin;
-    private Date checkout;
+    private LocalDate checkin;
+    private LocalDate checkout;
     private int numberOfGuests;
     private ReserveStatus status;
     private Payment payment;
