@@ -57,3 +57,13 @@ CREATE TABLE IF NOT EXISTS Reserves(
                                        payment_id INTEGER REFERENCES Payments(receipt_id)   /* برای اتصال مستقیم به جدول payments */
 );
 
+CREATE TYPE task_status AS ENUM ('PENDING', 'IN_PROGRESS', 'DONE');
+CREATE TABLE IF NOT EXISTS Tasks(
+                                       task_id INTEGER PRIMARY KEY,
+                                       description VARCHAR(500) NOT NULL,
+                                       due_date DATE,
+                                       assigned_employee VARCHAR NOT NULL REFERENCES Employee(employee_id),
+                                       status task_status DEFAULT 'PENDING'
+
+);
+
