@@ -43,6 +43,8 @@
     - Manager
     - Task
     - Enums: Role, TaskStatus
+    - Guest
+    - Property, AssignProperty
 
 ---
 
@@ -50,9 +52,9 @@
 - نوشتن Queryهای لازم برای Entityها (CRUD پایه).
 
 تقسیم وظایف:
-- علیرضا: Branch, Hotel
-- شایان: Room, Reserve, Payment
-- امیرسبحان: Employee, Task, Manager, Guest, Property
+- علیرضا: Branch, Hotel, Property, Person
+- شایان: Room, Reserve, Guest
+- امیرسبحان: Employee, Task, Manager, Payment
 
 ---
 
@@ -60,9 +62,9 @@
 - ایجاد Mapperها (تبدیل Entity ↔ DTO یا نمایش بهتر).
 
 تقسیم وظایف:
-- علیرضا: HotelMapper, BranchMapper
-- شایان: RoomMapper, ReservationMapper, PaymentMapper
-- امیرسبحان: EmployeeMapper, TaskMapper, ManagerMapper, GuestMapper, PropertyMapper
+- علیرضا: HotelMapper, BranchMapper, PropertyMapper, PersonMapper
+- شایان: RoomMapper, ReservationMapper, GuestMapper
+- امیرسبحان: EmployeeMapper, TaskMapper, ManagerMapper, PaymentMapper
 
 ---
 
@@ -70,9 +72,9 @@
 - پیاده‌سازی لایه Service برای منطق برنامه.
 
 تقسیم وظایف:
-- علیرضا: HotelService, BranchService
-- شایان: RoomService, ReservationService, PaymentService
-- امیرسبحان: EmployeeService, TaskService, ManagerService, GuestService, PropertyService
+- علیرضا: HotelService, BranchService, PropertyService, PersonService
+- شایان: RoomService, ReservationService, GuestService
+- امیرسبحان: EmployeeService, TaskService, ManagerService, PaymentService
 
 ---
 
@@ -80,9 +82,9 @@
 - ایجاد Repository برای مدیریت CRUD.
 
 تقسیم وظایف:
-- علیرضا: Repository برای Branch, Hotel
-- شایان: Repository برای Room, Reserve, Payment
-- امیرسبحان: Repository برای Employee, Task, Manager, Guest, Property
+- علیرضا: Repository برای Branch, Hotel, Property, Person
+- شایان: Repository برای Room, Reserve, Guest
+- امیرسبحان: Repository برای Employee, Task, Manager, Payment
 
 ---
 
@@ -90,9 +92,9 @@
 - ایجاد Controllerها برای اتصال Serviceها به لایه UI.
 
 تقسیم وظایف:
-- علیرضا: HotelController, BranchController
-- شایان: RoomController, ReservationController, PaymentController
-- امیرسبحان: EmployeeController, TaskController, ManagerController, GuestController, PropertyController
+- علیرضا: HotelController, BranchController, PropertyController, PersonController
+- شایان: RoomController, ReservationController, GuestController
+- امیرسبحان: EmployeeController, TaskController, ManagerController, PaymentController
 
 ---
 
@@ -100,9 +102,9 @@
 - طراحی صفحات UI با JavaFX (FXML).
 
 تقسیم وظایف:
-- علیرضا: HotelUI, BranchUI
-- شایان: RoomUI, ReservationUI, PaymentUI
-- امیرسبحان: EmployeeUI, TaskUI, ManagerUI, GuestUI, PropertyUI
+- علیرضا: HotelUI, BranchUI, PropertyUI, PersonUI
+- شایان: RoomUI, ReservationUI, GuestUI
+- امیرسبحان: EmployeeUI, TaskUI, ManagerUI, PaymentUI
 
 ---
 
@@ -110,9 +112,9 @@
 - تست نهایی برای کلاس‌ها و سناریوهای اصلی.
 
 تقسیم وظایف:
-- علیرضا: تست Hotel, Branch
-- شایان: تست Room, Reservation, Payment
-- امیرسبحان: تست Employee, Task, Manager, Guest, Property
+- علیرضا: تست Hotel, Branch, Property, Person
+- شایان: تست Room, Reservation, Guest
+- امیرسبحان: تست Employee, Task, Manager, Payment
 
 ---
 
