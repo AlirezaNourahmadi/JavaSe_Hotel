@@ -19,7 +19,7 @@ public class Room {
     private int pricePerNight;
     private int capacity;
 
-   // isAvailable()
+
    @Override
    public String toString() {
        Gson gson = new Gson();

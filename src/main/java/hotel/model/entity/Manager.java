@@ -1,7 +1,7 @@
 package hotel.model.entity;
 
 
-import com.google.gson.Gson;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

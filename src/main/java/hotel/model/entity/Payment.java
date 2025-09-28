@@ -21,7 +21,6 @@ public class Payment {
     private PaymentStatus status;
     private PaymentType paymentType;
 
-    public void processPayment() { this.status = PaymentStatus.PAID; }
 
     @Override
     public String toString() {

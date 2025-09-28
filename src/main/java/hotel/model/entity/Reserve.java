@@ -17,9 +17,6 @@ public class Reserve {
     private ReserveStatus status;
     private Payment payment;
 
-    public void confirm() { this.status = ReserveStatus.CONFIRMED; }
-    public void cancel() { this.status = ReserveStatus.CANCELED; }
-    public void update() { this.status = ReserveStatus.UPDATED; }
 
     @Override
     public String toString() {
