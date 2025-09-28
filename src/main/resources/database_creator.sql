@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Persons(
-
+                                         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                          first_name VARCHAR(100) NOT NULL,
                                          last_name VARCHAR(100) NOT NULL,
                                          email VARCHAR(150) UNIQUE NOT NULL,
@@ -13,8 +13,9 @@ CREATE TABLE IF NOT EXISTS Persons(
 );
 
 
+
 CREATE TABLE IF NOT EXISTS Hotels(
-                                        id INTEGER PRIMARY KEY ,
+                                        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY ,
                                         name VARCHAR(100) NOT NULL,
                                         branch VARCHAR(100) NOT NULL
 );
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Hotels(
 
 
 CREATE TABLE IF NOT EXISTS Branches(
-                                        branch_id INTEGER NOT NULL REFERENCES Hotels(id) ON DELETE CASCADE,
+                                        branch_id INTEGER NOT NULL REFERENCES Hotels(id) ON DELETE CASCADE GENERATED ALWAYS AS IDENTITY,
                                         address VARCHAR(300) NOT NULL,
                                         room_list BIGINT ,
                                         employee_list BIGINT
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Branches(
 
 CREATE TYPE room_status AS ENUM ('AVAILABLE', 'RESERVED', 'MAINTENANCE');
 CREATE TABLE IF NOT EXISTS Rooms(
-                                    room_id INTEGER PRIMARY KEY,
+                                    room_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                     type VARCHAR(100) NOT NULL,
                                     status room_status DEFAULT 'AVAILABLE',
                                     price_per_night INTEGER NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Rooms(
 CREATE TYPE payment_status AS ENUM ('PAYMENT', 'PAID', 'CANCELED');
 CREATE TYPE payment_paymentType AS ENUM ('CASH', 'CARD', 'ONLINE');
 CREATE TABLE IF NOT EXISTS Payments(
-                                       receipt_id INTEGER PRIMARY KEY,
+                                       receipt_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                        amount NUMERIC NOT NULL,
                                        payment_date DATE,
                                        status payment_status,
@@ -49,21 +50,35 @@ CREATE TABLE IF NOT EXISTS Payments(
 
 CREATE TYPE reserve_status AS ENUM ('CONFIRMED', 'CANCELED', 'UPDATED','PENDING');
 CREATE TABLE IF NOT EXISTS Reserves(
-                                       reserve_id INTEGER PRIMARY KEY,
+                                       guest_id INTEGER REFERENCES Persons(id),
+                                       reserve_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                        check_in DATE,
                                        check_out DATE,
                                        number_of_guests INTEGER,
                                        status reserve_status DEFAULT 'PENDING',
                                        payment_id INTEGER REFERENCES Payments(receipt_id)   /* برای اتصال مستقیم به جدول payments */
+
 );
+
+CREATE TABLE IF NOT EXISTS Employees(
+                                        employee_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                                        first_name VARCHAR(100) NOT NULL,
+                                        last_name VARCHAR(100) NOT NULL,
+                                        phone VARCHAR(20),
+                                        email VARCHAR(150) UNIQUE,
+                                        branch_id INTEGER REFERENCES Branches(branch_id) ON DELETE CASCADE
+);
+
 
 CREATE TYPE task_status AS ENUM ('PENDING', 'IN_PROGRESS', 'DONE');
 CREATE TABLE IF NOT EXISTS Tasks(
-                                       task_id INTEGER PRIMARY KEY,
+                                       task_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                        description VARCHAR(500) NOT NULL,
                                        due_date DATE,
-                                       assigned_employee VARCHAR NOT NULL REFERENCES Employee(employee_id),
+                                       assigned_employee VARCHAR NOT NULL REFERENCES Employees(employee_id),
                                        status task_status DEFAULT 'PENDING'
 
 );
+
+
 
