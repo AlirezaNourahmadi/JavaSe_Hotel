@@ -8,7 +8,7 @@ public class GuestMapper {
     public Guest guestMapper( ResultSet resultSet) throws Exception{
         return Guest
                 .builder()
-                .id(resultSet.getInt("id"))
+                .id(resultSet.getInt("guest_id"))
                 .firstName(resultSet.getString("firstName"))
                 .lastName(resultSet.getString("lastName"))
                 .birthDate(resultSet.getDate("birthDate").toLocalDate())

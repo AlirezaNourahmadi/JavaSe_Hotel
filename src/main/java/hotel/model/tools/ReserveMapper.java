@@ -8,10 +8,11 @@ public class ReserveMapper {
     public Reserve reserveMapper(ResultSet resultSet) throws Exception {
         return Reserve
                 .builder()
-                .reserveId(resultSet.getInt("reserveId"))
-                .checkIn(resultSet.getDate("checkIn"))
-                .checkOut(resultSet.getDate("checkOut"))
-                .numberOfGuests(resultSet.getInt("numberOfGuests"))
+
+                .reserveId(resultSet.getInt("reserve_id"))
+                .checkIn(resultSet.getDate("check_in"))
+                .checkOut(resultSet.getDate("check_out"))
+                .numberOfGuests(resultSet.getInt("number_of_guests"))
                 .status(ReserveStatus.valueOf(resultSet.getString("status")))
                 .build();
     }
