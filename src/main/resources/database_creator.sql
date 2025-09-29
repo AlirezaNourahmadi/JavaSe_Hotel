@@ -80,5 +80,20 @@ CREATE TABLE IF NOT EXISTS Tasks(
 
 );
 
+CREATE TABLE IF NOT EXISTS Properties(
+                                       name VARCHAR(50) NOT NULL,
+                                       quantity INTEGER NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS Assignproperties(
+                                       property_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                                       quantity INTEGER NOT NULL,
+                                       room VARCHAR NOT NULL REFERENCES Rooms(room_id),
+                                       assigned_date DATE NOT NULL,
+                                       assigned_by VARCHAR NOT NULL REFERENCES Employees(employee_id)
+);
+
+
 
 
