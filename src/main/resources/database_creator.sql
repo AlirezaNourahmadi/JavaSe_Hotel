@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS Persons(
 
 );
 
+CREATE TABLE IF NOT EXISTS Guests (
+                                      guest_id INTEGER PRIMARY KEY REFERENCES Persons(id) ON DELETE CASCADE
+);
 
 
 CREATE TABLE IF NOT EXISTS Hotels(
