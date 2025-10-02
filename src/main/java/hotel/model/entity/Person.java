@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class Person {
+public abstract class Person {
 
     private int id;
     private String firstName;

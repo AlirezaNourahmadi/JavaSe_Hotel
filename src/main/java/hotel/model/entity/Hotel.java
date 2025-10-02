@@ -14,7 +14,6 @@ import java.util.List;
 @SuperBuilder
 public class Hotel {
     private String name;
-    private List<Branch> branchList;
 
 
     @Override
