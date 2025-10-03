@@ -2,6 +2,7 @@ package hotel.model.repository;
 
 import hotel.model.entity.Payment;
 import hotel.model.tools.ConnectionProvider;
+import hotel.model.tools.PaymentMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,47 +14,37 @@ import java.util.List;
 public class PaymentRepository implements AutoCloseable {
     private PreparedStatement preparedStatement;
     private final Connection connection;
+    private final PaymentMapper paymentMapper = new PaymentMapper();
 
     public PaymentRepository() throws Exception {
         connection = ConnectionProvider.getProvider().getConnection();
     }
 
-    @Override
-    public void close() throws Exception {
-        if (preparedStatement != null) {
-            preparedStatement.close();
-        }
-        if (connection != null) {
-            connection.close();
-        }
-    }
 
     public void save(Payment payment) throws SQLException {
-        String sql = "INSERT INTO payments (id, amount, method, date) VALUES (?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(
+                "INSERT INTO payments (id, amount, method, date) VALUES (?, ?)");
         preparedStatement.setDouble(1, payment.getAmount());
         preparedStatement.setDate(2, new java.sql.Date(payment.getDate().getTime()));
         preparedStatement.execute();
     }
 
     public void edit(Payment payment) throws SQLException {
-        String sql = "UPDATE payments SET amount = ?, date = ?";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(
+                "UPDATE payments SET amount = ?, date = ?");
         preparedStatement.setDouble(1, payment.getAmount());
         preparedStatement.setDate(2, new java.sql.Date(payment.getDate().getTime()));
         preparedStatement.executeUpdate();
     }
 
     public void delete(Integer id) throws SQLException {
-        String sql = "DELETE FROM payments WHERE id = ?";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement("DELETE FROM payments WHERE id = ?");
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
     }
 
     public List<Payment> findAll() throws SQLException {
-        String sql = "SELECT * FROM payments";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement("SELECT * FROM payments");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         List<Payment> paymentList = new ArrayList<>();
@@ -67,8 +58,7 @@ public class PaymentRepository implements AutoCloseable {
     }
 
     public Payment findById(Integer id) throws SQLException {
-        String sql = "SELECT * FROM payments WHERE id = ?";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement( "SELECT * FROM payments WHERE id = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -79,5 +69,11 @@ public class PaymentRepository implements AutoCloseable {
             return payment;
         }
         return null;
+    }
+    @Override
+    public void close() throws Exception {
+        if (preparedStatement != null) {
+            preparedStatement.close();
+        }
     }
 }

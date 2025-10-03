@@ -26,10 +26,7 @@ public class TaskRepository implements Repository<Task, Integer>, AutoCloseable 
         );
         preparedStatement.setInt(1, task.getTaskId());
         preparedStatement.setString(2, task.getDescription());
-        if (task.getDueDate() != null)
-            preparedStatement.setDate(3, java.sql.Date.valueOf(task.getDueDate()));
-        else
-            preparedStatement.setDate(3, null);
+        preparedStatement.setDate(3, java.sql.Date.valueOf(task.getDueDate()));
         preparedStatement.setInt(4, task.getAssignedEmployee().getId());
         preparedStatement.setString(5, task.getStatus().name());
         preparedStatement.execute();
