@@ -70,6 +70,7 @@
 
 ### ✅ فاز چهارم (۸ تا ۹ مهر) — Service Layer
 - پیاده‌سازی لایه Service برای منطق برنامه.
+- service interface :شایان  
 
 تقسیم وظایف:
 - علیرضا: HotelService, BranchService, PropertyService, PersonService
