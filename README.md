@@ -37,7 +37,7 @@
     - Room
     - Reserve
     - Payment
-    - Enums: RoomType, PaymentStatus
+    - Enums: RoomType, PaymentStatus, ReservationStatus, RoomStatus
 - امیرسبحان:
     - Employee
     - Manager
