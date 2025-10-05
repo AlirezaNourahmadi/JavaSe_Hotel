@@ -48,10 +48,6 @@ public final class BranchService {
         }
     }
 
-    // Branch-specific methods
-    public List<Branch> findByAddress(String address) throws Exception {
-        try(BranchRepository branchRepository = new BranchRepository()) {
-            return branchRepository.findByAddress(address);
-        }
-    }
+
 }
+
