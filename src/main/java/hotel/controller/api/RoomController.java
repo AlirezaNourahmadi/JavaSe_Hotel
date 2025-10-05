@@ -2,16 +2,15 @@ package hotel.controller.api;
 
 import hotel.model.entity.Room;
 import hotel.model.service.RoomService;
+import lombok.Getter;
+
 import java.util.List;
 
 public class RoomController {
+    @Getter
     private static final RoomController controller = new RoomController();
 
     private RoomController() {}
-
-    public static RoomController getController() {
-        return controller;
-    }
 
     public void save(Room room) {
         try {

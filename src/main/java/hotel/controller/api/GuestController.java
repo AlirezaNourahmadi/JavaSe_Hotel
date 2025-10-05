@@ -3,16 +3,15 @@ package hotel.controller.api;
 
 import hotel.model.entity.Guest;
 import hotel.model.service.GuestService;
+import lombok.Getter;
+
 import java.util.List;
 
 public class GuestController {
+    @Getter
     private static final GuestController controller = new GuestController();
 
     private GuestController() {}
-
-    public static GuestController getController() {
-        return controller;
-    }
 
     public void save(Guest guest) {
         try {
