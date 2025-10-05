@@ -24,9 +24,9 @@ public final class PropertyService {
         }
     }
 
-    public void delete(Integer id) throws Exception {
+    public void delete(String name) throws Exception {
         try(PropertyRepository propertyRepository = new PropertyRepository()) {
-            propertyRepository.delete(id);
+            propertyRepository.delete(name);
         }
     }
 
@@ -36,21 +36,15 @@ public final class PropertyService {
         }
     }
 
-    public Property findById(Integer id) throws Exception {
+    public Property findByName(String name) throws Exception {
         try(PropertyRepository propertyRepository = new PropertyRepository()) {
-            return propertyRepository.findById(id);
+            return propertyRepository.findById(name);
         }
     }
 
     public List<Property> findAll() throws Exception {
         try(PropertyRepository propertyRepository = new PropertyRepository()) {
             return propertyRepository.findAll();
-        }
-    }
-
-    public List<Property> findByName(String name) throws Exception {
-        try(PropertyRepository propertyRepository = new PropertyRepository()) {
-            return propertyRepository.findByName(name);
         }
     }
 }
