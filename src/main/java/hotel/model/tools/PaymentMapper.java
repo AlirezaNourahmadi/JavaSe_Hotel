@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PaymentMapper {
-//public Manager managerMapper(ResultSet resultSet) throws SQLException {
-//        return Manager
 
     public Payment paymentMapper(ResultSet resultSet) throws SQLException {
         return Payment

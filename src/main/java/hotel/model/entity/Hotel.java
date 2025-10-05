@@ -13,8 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 public class Hotel {
+    private int id;
     private String name;
-
+    private Branch branch;
 
     @Override
     public String toString() {
