@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Hotels(
 
 
 CREATE TABLE IF NOT EXISTS Branches(
-                                        branch_id INTEGER NOT NULL REFERENCES Hotels(id) ON DELETE CASCADE GENERATED ALWAYS AS IDENTITY,
+                                        branch_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                                         address VARCHAR(300) NOT NULL,
                                         room_list BIGINT ,
                                         employee_list BIGINT
@@ -90,11 +90,11 @@ CREATE TABLE IF NOT EXISTS Properties(
 
 
 CREATE TABLE IF NOT EXISTS Assignproperties(
-                                       property_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-                                       quantity INTEGER NOT NULL,
-                                       room VARCHAR NOT NULL REFERENCES Rooms(room_id),
-                                       assigned_date DATE NOT NULL,
-                                       assigned_by VARCHAR NOT NULL REFERENCES Employees(employee_id)
+                                               property_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                                               quantity INTEGER NOT NULL,
+                                               room INTEGER NOT NULL REFERENCES Rooms(room_id),
+                                               assigned_date DATE NOT NULL,
+                                               assigned_by INTEGER NOT NULL REFERENCES Employees(employee_id)
 );
 
 

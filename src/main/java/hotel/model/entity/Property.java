@@ -1,7 +1,14 @@
 package hotel.model.entity;
 
 import com.google.gson.Gson;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@SuperBuilder
 public class Property {
 
     private String name;

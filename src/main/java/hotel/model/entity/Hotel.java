@@ -3,7 +3,6 @@ package hotel.model.entity;
 import com.google.gson.Gson;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import java.util.List;
 
 
 
