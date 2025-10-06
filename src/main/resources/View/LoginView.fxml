@@ -34,11 +34,13 @@
          <children>
             <Label text="User name" />
             <Label text="Password" GridPane.rowIndex="1" />
-            <TextField prefHeight="32.0" prefWidth="182.0" GridPane.columnIndex="1" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="UserNameText" prefHeight="32.0" prefWidth="182.0" GridPane.columnIndex="1" />
+            <TextField fx:id="PasswordText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="333.0" layoutY="227.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="221.0" text="Done" />
+      <Button fx:id="DoneButton" layoutX="333.0" layoutY="227.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="221.0" text="Done" />
       <Text layoutX="444.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget password" underline="true" />
    </children>
 </Pane>
+
+

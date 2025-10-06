@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controller.ReserveController">
    <children>
       <Label layoutX="15.0" layoutY="19.0" text="Reserve page" underline="true">
          <font>
@@ -43,17 +43,16 @@
             <TextField fx:id="PaymentText" prefHeight="31.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="DeleteButtom" layoutX="369.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Delete" />
-      <Button fx:id="EditButtom" layoutX="443.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Edit" />
-      <Button fx:id="SaveButtom" layoutX="517.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Save" />
+      <Button fx:id="DeleteButton" layoutX="369.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Delete" />
+      <Button fx:id="EditButton" layoutX="443.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Edit" />
+      <Button fx:id="SaveButton" layoutX="517.0" layoutY="360.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Save" />
       <HBox alignment="CENTER" layoutX="15.0" layoutY="318.0" prefHeight="46.0" prefWidth="232.0" />
       <Text layoutX="255.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by id" />
       <TextField fx:id="SearchByIdText" layoutX="342.0" layoutY="20.0" prefHeight="31.0" prefWidth="242.0" />
       <TableView fx:id="ReserveTable" layoutX="256.0" layoutY="65.0" prefHeight="285.0" prefWidth="328.0">
         <columns>
-          <TableColumn prefWidth="112.0" text="Reserve_id" />
-          <TableColumn prefWidth="118.0" text="Status" />
-            <TableColumn prefWidth="97.0" text="etc" />
+          <TableColumn fx:id="reserveIdColumn" prefWidth="136.0" text="Reserve_id" />
+          <TableColumn fx:id="statusColumn" prefWidth="191.0" text="Status" />
         </columns>
       </TableView>
    </children>

@@ -1,7 +1,7 @@
 package hotel.controller;
 
 import hotel.model.entity.Guest;
-import hotel.model.entity.Person;
+
 import hotel.model.service.GuestService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,14 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class GuestController implements Initializable {
 
     @FXML
-    private TextField idText, nameText, familyText, emailText, birthDateText, phoneText, addressText, userNameText, passwordText;
+    private TextField idText, nameText, familyText, emailText, BirthDateDatePicker, phoneText, addressText, userNameText, passwordText;
     @FXML
     private TextField findByNameText, findByIdText;
     @FXML
@@ -54,7 +54,7 @@ public class GuestController implements Initializable {
         nameText.clear();
         familyText.clear();
         emailText.clear();
-        birthDateText.clear();
+        BirthDateDatePicker.clear();
         phoneText.clear();
         addressText.clear();
         userNameText.clear();
@@ -83,7 +83,7 @@ public class GuestController implements Initializable {
                 nameText.setText(guest.getFirstName());
                 familyText.setText(guest.getLastName());
                 emailText.setText(guest.getEmail());
-                birthDateText.setText(guest.getBirthDate() != null ? guest.getBirthDate().toString() : "");
+                BirthDateDatePicker.setText(guest.getBirthDate() != null ? guest.getBirthDate().toString() : "");
                 phoneText.setText(guest.getPhone());
                 addressText.setText(guest.getAddress());
                 userNameText.setText(guest.getUserName());

@@ -4,6 +4,7 @@ import hotel.model.entity.Payment;
 import hotel.model.entity.Reserve;
 import hotel.model.entity.enums.ReserveStatus;
 import hotel.model.service.ReserveService;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,11 +30,11 @@ public class ReserveController implements Initializable {
     @FXML
     private TableColumn<Reserve, String> statusColumn;
     @FXML
-    private TableColumn<Reserve, java.util.Date> checkInColumn, checkOutColumn;
+    private TableColumn<Reserve, Date> checkInColumn, checkOutColumn;
     @FXML
     private TableColumn<Reserve, Double> paymentColumn;
     @FXML
-    private Button SaveButtom, EditButtom, DeleteButtom;
+    private Button SaveButton, EditButton, DeleteButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,9 +44,9 @@ public class ReserveController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Error Loading Data !!!");
         }
 
-        SaveButtom.setOnAction(e -> saveReserve());
-        EditButtom.setOnAction(e -> editReserve());
-        DeleteButtom.setOnAction(e -> deleteReserve());
+        SaveButton.setOnAction(e -> saveReserve());
+        EditButton.setOnAction(e -> editReserve());
+        DeleteButton.setOnAction(e -> deleteReserve());
 
         SearchByIdText.setOnKeyReleased(e -> searchById());
 
@@ -70,7 +72,7 @@ public class ReserveController implements Initializable {
         checkOutColumn.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         numberOfGuestsColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfGuests"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        paymentColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleDoubleProperty(
+        paymentColumn.setCellValueFactory(c -> new SimpleDoubleProperty(
                 c.getValue().getPayment() != null ? c.getValue().getPayment().getAmount() : 0
         ).asObject());
 
@@ -101,8 +103,8 @@ public class ReserveController implements Initializable {
                     .build();
 
             Reserve reserve = Reserve.builder()
-                    .checkIn(CheckIndatePicker.getValue() != null ? java.sql.Date.valueOf(CheckIndatePicker.getValue()) : null)
-                    .checkOut(CheckOutdatePicker.getValue() != null ? java.sql.Date.valueOf(CheckOutdatePicker.getValue()) : null)
+                    .checkIn(CheckIndatePicker.getValue() != null ? Date.valueOf(CheckIndatePicker.getValue()) : null)
+                    .checkOut(CheckOutdatePicker.getValue() != null ? Date.valueOf(CheckOutdatePicker.getValue()) : null)
                     .numberOfGuests(Integer.parseInt(GuestNumberText.getText()))
                     .status(ReserveStatus.PENDING)
                     .payment(payment)
@@ -124,8 +126,8 @@ public class ReserveController implements Initializable {
 
             Reserve reserve = Reserve.builder()
                     .reserveId(Integer.parseInt(SearchByIdText.getText()))
-                    .checkIn(CheckIndatePicker.getValue() != null ? java.sql.Date.valueOf(CheckIndatePicker.getValue()) : null)
-                    .checkOut(CheckOutdatePicker.getValue() != null ? java.sql.Date.valueOf(CheckOutdatePicker.getValue()) : null)
+                    .checkIn(CheckIndatePicker.getValue() != null ? Date.valueOf(CheckIndatePicker.getValue()) : null)
+                    .checkOut(CheckOutdatePicker.getValue() != null ? Date.valueOf(CheckOutdatePicker.getValue()) : null)
                     .numberOfGuests(Integer.parseInt(GuestNumberText.getText()))
                     .status(ReserveStatus.CONFIRMED)
                     .payment(payment)

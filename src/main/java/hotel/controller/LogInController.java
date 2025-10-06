@@ -27,6 +27,7 @@ public class LoginController implements Initializable {
             String password = PasswordText.getText();
             List<Person> persons = PersonService.getService().findByUserNameAndPassWord(userName, password);
 
+
             if (persons != null && !persons.isEmpty()) {
                 showAlert(Alert.AlertType.INFORMATION, "Login Successful\nWelcome " + persons.get(0).getFirstName());
                 clearForm();

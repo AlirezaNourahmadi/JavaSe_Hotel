@@ -35,9 +35,9 @@
       <RadioButton fx:id="TypeSuiteRadioButton" layoutX="112.0" layoutY="251.0" mnemonicParsing="false" text="Suite" toggleGroup="$RoomType" />
       <TableView fx:id="RoomTable" layoutX="228.0" layoutY="35.0" prefHeight="310.0" prefWidth="359.0">
         <columns>
-          <TableColumn text="Room_id" />
+          <TableColumn fx:id="roomIdColumn" text="Room_id" />
           <TableColumn prefWidth="114.33331298828125" text="Status" />
-            <TableColumn prefWidth="164.66668701171875" text="Price" />
+            <TableColumn fx:id="priceColumn" prefWidth="164.66668701171875" text="Price" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="443.0" layoutY="351.0" prefHeight="42.0" prefWidth="152.0">
