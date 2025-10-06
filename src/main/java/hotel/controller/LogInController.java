@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LogInController implements Initializable {
 
     @FXML
     private TextField UserNameText, PasswordText;
