@@ -1,61 +1,173 @@
 package hotel.controller;
 
-
+import hotel.model.entity.Payment;
 import hotel.model.entity.Reserve;
+import hotel.model.entity.enums.ReserveStatus;
 import hotel.model.service.ReserveService;
-import lombok.Getter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class ReserveController {
-    @Getter
-    private static final ReserveController controller = new ReserveController();
+public class ReserveController implements Initializable {
 
-    private ReserveController() {}
+    @FXML
+    private DatePicker CheckIndatePicker, CheckOutdatePicker;
+    @FXML
+    private TextField GuestNumberText, PaymentText, SearchByIdText;
+    @FXML
+    private TableView<Reserve> ReserveTable;
+    @FXML
+    private TableColumn<Reserve, Integer> reserveIdColumn, numberOfGuestsColumn;
+    @FXML
+    private TableColumn<Reserve, String> statusColumn;
+    @FXML
+    private TableColumn<Reserve, java.util.Date> checkInColumn, checkOutColumn;
+    @FXML
+    private TableColumn<Reserve, Double> paymentColumn;
+    @FXML
+    private Button SaveButtom, EditButtom, DeleteButtom;
 
-    public void save(Reserve reserve) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         try {
+            resetForm();
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error Loading Data !!!");
+        }
+
+        SaveButtom.setOnAction(e -> saveReserve());
+        EditButtom.setOnAction(e -> editReserve());
+        DeleteButtom.setOnAction(e -> deleteReserve());
+
+        SearchByIdText.setOnKeyReleased(e -> searchById());
+
+        ReserveTable.setOnMouseClicked(e -> selectFromTable());
+        ReserveTable.setOnKeyReleased(e -> selectFromTable());
+    }
+
+    private void resetForm() throws Exception {
+        CheckIndatePicker.setValue(null);
+        CheckOutdatePicker.setValue(null);
+        GuestNumberText.clear();
+        PaymentText.clear();
+        SearchByIdText.clear();
+
+        showDataOnTable(ReserveService.getService().findAll());
+    }
+
+    private void showDataOnTable(List<Reserve> reserveList) {
+        ObservableList<Reserve> observableList = FXCollections.observableList(reserveList);
+
+        reserveIdColumn.setCellValueFactory(new PropertyValueFactory<>("reserveId"));
+        checkInColumn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+        checkOutColumn.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
+        numberOfGuestsColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfGuests"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        paymentColumn.setCellValueFactory(c -> new javafx.beans.property.SimpleDoubleProperty(
+                c.getValue().getPayment() != null ? c.getValue().getPayment().getAmount() : 0
+        ).asObject());
+
+        ReserveTable.setItems(observableList);
+    }
+
+    private void selectFromTable() {
+        try {
+            Reserve reserve = ReserveTable.getSelectionModel().getSelectedItem();
+            if (reserve != null) {
+                CheckIndatePicker.setValue(reserve.getCheckIn() != null ?
+                        new java.sql.Date(reserve.getCheckIn().getTime()).toLocalDate() : null);
+                CheckOutdatePicker.setValue(reserve.getCheckOut() != null ?
+                        new java.sql.Date(reserve.getCheckOut().getTime()).toLocalDate() : null);
+                GuestNumberText.setText(String.valueOf(reserve.getNumberOfGuests()));
+                PaymentText.setText(reserve.getPayment() != null ? String.valueOf(reserve.getPayment().getAmount()) : "");
+                SearchByIdText.setText(String.valueOf(reserve.getReserveId()));
+            }
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error Loading Data !!!");
+        }
+    }
+
+    private void saveReserve() {
+        try {
+            Payment payment = Payment.builder()
+                    .amount(Double.parseDouble(PaymentText.getText()))
+                    .build();
+
+            Reserve reserve = Reserve.builder()
+                    .checkIn(CheckIndatePicker.getValue() != null ? java.sql.Date.valueOf(CheckIndatePicker.getValue()) : null)
+                    .checkOut(CheckOutdatePicker.getValue() != null ? java.sql.Date.valueOf(CheckOutdatePicker.getValue()) : null)
+                    .numberOfGuests(Integer.parseInt(GuestNumberText.getText()))
+                    .status(ReserveStatus.PENDING)
+                    .payment(payment)
+                    .build();
+
             ReserveService.getService().save(reserve);
-            System.out.println("Reserve saved successfully: " + reserve);
+            showAlert(Alert.AlertType.INFORMATION, "Reserve Saved Successfully\n" + reserve);
+            resetForm();
         } catch (Exception e) {
-            System.out.println("Error saving reserve: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Reserve Save Failed: " + e.getMessage());
         }
     }
 
-    public void edit(Reserve reserve) {
+    private void editReserve() {
         try {
+            Payment payment = Payment.builder()
+                    .amount(Double.parseDouble(PaymentText.getText()))
+                    .build();
+
+            Reserve reserve = Reserve.builder()
+                    .reserveId(Integer.parseInt(SearchByIdText.getText()))
+                    .checkIn(CheckIndatePicker.getValue() != null ? java.sql.Date.valueOf(CheckIndatePicker.getValue()) : null)
+                    .checkOut(CheckOutdatePicker.getValue() != null ? java.sql.Date.valueOf(CheckOutdatePicker.getValue()) : null)
+                    .numberOfGuests(Integer.parseInt(GuestNumberText.getText()))
+                    .status(ReserveStatus.CONFIRMED)
+                    .payment(payment)
+                    .build();
+
             ReserveService.getService().edit(reserve);
-            System.out.println("Reserve updated successfully: " + reserve);
+            showAlert(Alert.AlertType.INFORMATION, "Reserve Edited Successfully\n" + reserve);
+            resetForm();
         } catch (Exception e) {
-            System.out.println("Error updating reserve: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Reserve Edit Failed: " + e.getMessage());
         }
     }
 
-    public void delete(int reserveId) {
+    private void deleteReserve() {
         try {
-            ReserveService.getService().delete(reserveId);
-            System.out.println("Reserve deleted with ID: " + reserveId);
+            int id = Integer.parseInt(SearchByIdText.getText());
+            ReserveService.getService().delete(id);
+            showAlert(Alert.AlertType.INFORMATION, "Reserve Deleted Successfully\nID: " + id);
+            resetForm();
         } catch (Exception e) {
-            System.out.println("Error deleting reserve: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Reserve Delete Failed: " + e.getMessage());
         }
     }
 
-    public List<Reserve> findAll() {
+    private void searchById() {
         try {
-            return ReserveService.getService().findAll();
+            if (!SearchByIdText.getText().isEmpty()) {
+                int id = Integer.parseInt(SearchByIdText.getText());
+                Reserve reserve = ReserveService.getService().findById(id);
+                showDataOnTable(reserve != null ?
+                        java.util.Collections.singletonList(reserve) :
+                        new java.util.ArrayList<Reserve>());
+            } else {
+                showDataOnTable(ReserveService.getService().findAll());
+            }
         } catch (Exception e) {
-            System.out.println("Error fetching reserves: " + e.getMessage());
-            return null;
+            showAlert(Alert.AlertType.ERROR, "Search Failed: " + e.getMessage());
         }
     }
 
-    public Reserve findById(int reserveId) {
-        try {
-            return ReserveService.getService().findById(reserveId);
-        } catch (Exception e) {
-            System.out.println("Error finding reserve: " + e.getMessage());
-            return null;
-        }
+    private void showAlert(Alert.AlertType type, String msg) {
+        Alert alert = new Alert(type, msg, ButtonType.OK);
+        alert.show();
     }
 }
-

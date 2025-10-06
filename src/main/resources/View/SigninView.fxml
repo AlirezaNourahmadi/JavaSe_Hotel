@@ -47,16 +47,16 @@
             <Label text="Phone" GridPane.rowIndex="5" />
             <Label text="Address" GridPane.rowIndex="6" />
             <Label text="Email" GridPane.rowIndex="7" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="FirstNameText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" />
+            <TextField fx:id="LastNameText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="UserNametext" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="PasswordText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="PhoneText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="AddressText" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="Emailtext" prefHeight="32.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <DatePicker fx:id="BirthDateDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="520.0" layoutY="355.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="SaveButton" layoutX="520.0" layoutY="355.0" mnemonicParsing="false" text="Save" />
    </children>
 </Pane>

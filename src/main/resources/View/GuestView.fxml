@@ -54,7 +54,7 @@
             <PasswordField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <TableView fx:id="personTable" layoutX="260.0" layoutY="62.0" prefHeight="258.0" prefWidth="617.0">
+      <TableView fx:id="guestTable" layoutX="260.0" layoutY="62.0" prefHeight="258.0" prefWidth="617.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="24.0" text="ID" />
           <TableColumn fx:id="nameColumn" prefWidth="57.0" text="Name" />
@@ -66,7 +66,7 @@
         </columns>
       </TableView>
       <Label layoutX="261.0" layoutY="30.0" text="Find by name" />
-      <TextField fx:id="searchNameText" layoutX="361.0" layoutY="24.0" prefHeight="31.0" prefWidth="189.0" />
+      <TextField fx:id="findByNameText" layoutX="361.0" layoutY="24.0" prefHeight="31.0" prefWidth="189.0" />
       <HBox alignment="CENTER" layoutX="653.0" layoutY="326.0" prefHeight="48.0" prefWidth="231.0">
          <children>
             <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Delete" />
@@ -83,7 +83,7 @@
       </HBox>
       <HBox layoutX="376.0" layoutY="299.0" prefHeight="100.0" prefWidth="200.0" />
       <Label layoutX="615.0" layoutY="28.0" text="Find by id" />
-      <TextField fx:id="searchNameText1" layoutX="687.0" layoutY="24.0" prefHeight="31.0" prefWidth="189.0" />
+      <TextField fx:id="findByIdText" layoutX="687.0" layoutY="24.0" prefHeight="31.0" prefWidth="189.0" />
       <Label layoutX="33.0" layoutY="21.0" text="Guest page" underline="true">
          <font>
             <Font name="System Bold Italic" size="24.0" />
