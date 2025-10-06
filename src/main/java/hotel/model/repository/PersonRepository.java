@@ -106,6 +106,21 @@ public class PersonRepository implements Repository<Person,Integer>,AutoCloseabl
         return  personList;
     }
 
+    public List<Person> findByNameAndFamily(String name, String family) throws Exception {
+        List<Person> personList = new ArrayList<>();
+
+        preparedStatement = connection.prepareStatement("select * from persons where first_name like ? and last_name like ?");
+        preparedStatement.setString(1, name + "%");
+        preparedStatement.setString(2, family + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Person person = personMapper.personMapper(resultSet);
+            personList.add(person);
+        }
+        return personList;
+    }
+
     @Override
     public void close() throws Exception {
         preparedStatement.close();

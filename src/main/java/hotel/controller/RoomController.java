@@ -1,4 +1,4 @@
-package hotel.controller.api;
+package hotel.controller;
 
 import hotel.model.entity.Room;
 import hotel.model.service.RoomService;

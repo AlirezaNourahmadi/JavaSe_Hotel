@@ -1,4 +1,4 @@
-package hotel.controller.api;
+package hotel.controller;
 
 import hotel.model.entity.Manager;
 import hotel.model.service.ManagerService;

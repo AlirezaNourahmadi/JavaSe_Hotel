@@ -4,6 +4,8 @@ import hotel.model.entity.Person;
 import hotel.model.repository.PersonRepository;
 import lombok.Getter;
 
+import java.util.List;
+
 public final class PersonService  {
     @Getter
     private static PersonService service = new PersonService();
@@ -46,9 +48,10 @@ public final class PersonService  {
         }
     }
 
-    public void findAll() throws Exception {
-        try(PersonRepository personRepository = new PersonRepository()) {
-            personRepository.findAll();
+
+    public List<Person> findAll() throws Exception {
+        try (PersonRepository personRepository = new PersonRepository()) {
+            return personRepository.findAll();
         }
     }
 
@@ -56,6 +59,12 @@ public final class PersonService  {
     public void findByUserNameAndPassWord(String userName, String password) throws Exception {
         try(PersonRepository personRepository = new PersonRepository()) {
             personRepository.findByUserNameAndPassWord(userName, password);
+        }
+    }
+
+    public List<Person> findByNameAndFamily(String name, String family) throws Exception {
+        try (PersonRepository personRepository = new PersonRepository()) {
+            return personRepository.findByNameAndFamily(name, family);
         }
     }
 
