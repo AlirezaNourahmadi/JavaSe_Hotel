@@ -56,9 +56,9 @@ public final class PersonService  {
     }
 
 
-    public void findByUserNameAndPassWord(String userName, String password) throws Exception {
+    public List<Person> findByUserNameAndPassWord(String userName, String password) throws Exception {
         try(PersonRepository personRepository = new PersonRepository()) {
-            personRepository.findByUserNameAndPassWord(userName, password);
+            return personRepository.findByUserNameAndPassWord(userName, password);
         }
     }
 
