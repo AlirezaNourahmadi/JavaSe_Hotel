@@ -3,6 +3,15 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
+        <entry key="$PROJECT_DIR$/src/main/java/hotel/model/entity/Room.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/hotel/model/entity/Room.java" />
+              <option name="originalContent" value="package hotel.model.entity;&#10;&#10;import com.google.gson.Gson;&#10;import hotel.model.entity.enums.RoomStatus;&#10;import hotel.model.entity.enums.RoomType;&#10;import lombok.Getter;&#10;import lombok.NoArgsConstructor;&#10;import lombok.Setter;&#10;import lombok.experimental.SuperBuilder;&#10;&#10;@Getter&#10;@Setter&#10;@NoArgsConstructor&#10;@SuperBuilder&#10;public class Room {&#10;    private int roomId;&#10;    private RoomType type;&#10;    private RoomStatus status;&#10;    private int pricePerNight;&#10;    private int capacity;&#10;    private Branch branch;&#10;&#10;&#10;   @Override&#10;   public String toString() {&#10;       Gson gson = new Gson();&#10;       return gson.toJson(this);&#10;   }&#10;&#10;}&#10;" />
+              <option name="updatedContent" value="package hotel.model.entity;&#10;&#10;import com.google.gson.Gson;&#10;import hotel.model.entity.enums.RoomStatus;&#10;import hotel.model.entity.enums.RoomType;&#10;import lombok.Getter;&#10;import lombok.NoArgsConstructor;&#10;import lombok.Setter;&#10;import lombok.experimental.SuperBuilder;&#10;&#10;@Getter&#10;@Setter&#10;@NoArgsConstructor&#10;@SuperBuilder&#10;public class Room {&#10;    private int roomId;&#10;    private RoomType type;&#10;    private RoomStatus status;&#10;    private int pricePerNight;&#10;    private int capacity;&#10;    private Branch branch;&#10;&#10;&#10;   @Override&#10;   public String toString() {&#10;       Gson gson = new Gson();&#10;       return gson.toJson(this);&#10;   }&#10;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/hotel/model/repository/HotelRepository.java">
           <value>
             <PendingDiffInfo>

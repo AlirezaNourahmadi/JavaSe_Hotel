@@ -1,6 +1,7 @@
 package hotel.model.service;
 
 import hotel.model.entity.Branch;
+import hotel.model.entity.Property;
 import hotel.model.repository.BranchRepository;
 import lombok.Getter;
 
@@ -44,7 +45,7 @@ public final class BranchService {
         }
     }
 
-    public List<Branch> findAll() throws Exception {
+    public List<Property> findAll() throws Exception {
         try(BranchRepository branchRepository = new BranchRepository()) {
             return branchRepository.findAll();
         }
