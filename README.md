@@ -70,11 +70,10 @@
 
 ### ✅ فاز چهارم (۸ تا ۹ مهر) — Service Layer
 - پیاده‌سازی لایه Service برای منطق برنامه.
-- service interface :شایان  
 
 تقسیم وظایف:
 - علیرضا: HotelService, BranchService, PropertyService, PersonService
-- شایان: RoomService, ReservationService, GuestService
+- شایان:  service(interface),RoomService, ReservationService, GuestService
 - امیرسبحان: EmployeeService, TaskService, ManagerService, PaymentService
 
 ---
@@ -84,7 +83,7 @@
 
 تقسیم وظایف:
 - علیرضا: Repository برای Branch, Hotel, Property, Person
-- شایان: Repository برای Room, Reserve, Guest
+- شایان: Repository برای , Repository(interface)Room, Reserve, Guest
 - امیرسبحان: Repository برای Employee, Task, Manager, Payment
 
 ---
@@ -94,7 +93,7 @@
 
 تقسیم وظایف:
 - علیرضا: HotelController, BranchController, PropertyController, PersonController
-- شایان: RoomController, ReservationController, GuestController
+- شایان: RoomController, ReservationController, GuestController, SigninController, LogInController
 - امیرسبحان: EmployeeController, TaskController, ManagerController, PaymentController
 
 ---
@@ -104,7 +103,7 @@
 
 تقسیم وظایف:
 - علیرضا: HotelUI, BranchUI, PropertyUI, PersonUI
-- شایان: RoomUI, ReservationUI, GuestUI
+- شایان: RoomUI, ReservationUI, GuestUI, SignInUI, LogInUI
 - امیرسبحان: EmployeeUI, TaskUI, ManagerUI, PaymentUI
 
 ---
