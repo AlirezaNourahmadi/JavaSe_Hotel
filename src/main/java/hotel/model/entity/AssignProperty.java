@@ -21,7 +21,7 @@ public class AssignProperty extends Property {
     private int quantity;
     private Room room;
     private LocalDate assignedDate;
-    private List<Employee> assignedBy;
+    private Employee assignedBy;
 
 
 

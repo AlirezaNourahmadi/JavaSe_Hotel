@@ -4,6 +4,8 @@ import hotel.model.entity.AssignProperty;
 import hotel.model.repository.AssignPropertyRepository;
 import lombok.Getter;
 
+import java.util.List;
+
 public final class AssignPropertyService {
     @Getter
     private static AssignPropertyService service = new AssignPropertyService();
@@ -34,15 +36,17 @@ public final class AssignPropertyService {
         }
     }
 
-    public void findById(Integer id) throws Exception {
+    public List<AssignProperty> findById(Integer id) throws Exception {
         try(AssignPropertyRepository assignPropertyRepository = new AssignPropertyRepository()) {
             assignPropertyRepository.findById(id);
         }
+        return null;
     }
 
-    public void findAll() throws Exception {
+    public List<AssignProperty> findAll() throws Exception {
         try(AssignPropertyRepository assignPropertyRepository = new AssignPropertyRepository()) {
             assignPropertyRepository.findAll();
         }
+        return null;
     }
 }
