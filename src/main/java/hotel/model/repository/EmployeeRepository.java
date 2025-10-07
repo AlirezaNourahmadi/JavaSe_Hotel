@@ -23,52 +23,33 @@ public class EmployeeRepository implements Repository<Employee, Integer>, AutoCl
     @Override
     public void save(Employee employee) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO employees (id, first_name, last_name, email, username, password, phone, address, birth_date, person_id, employee_id, employee_name, role, salary, hire_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO employees (first_name, last_name, phone, email, branch_id) VALUES (?, ?, ?, ?, ?)"
         );
-        preparedStatement.setInt(1, employee.getId());
-        preparedStatement.setString(2, employee.getFirstName());
-        preparedStatement.setString(3, employee.getLastName());
+        preparedStatement.setString(1, employee.getFirstName());
+        preparedStatement.setString(2, employee.getLastName());
+        preparedStatement.setString(3, employee.getPhone());
         preparedStatement.setString(4, employee.getEmail());
-        preparedStatement.setString(5, employee.getUserName());
-        preparedStatement.setString(6, employee.getPassword());
-        preparedStatement.setString(7, employee.getPhone());
-        preparedStatement.setString(8, employee.getAddress());
-        preparedStatement.setDate(9, Date.valueOf(employee.getBirthDate()));
-        preparedStatement.setInt(10, employee.getPersonId().getId());
-        preparedStatement.setInt(11, employee.getEmployeeId());
-        preparedStatement.setString(12, employee.getEmployeeName());
-        preparedStatement.setString(13, employee.getRole().name());
-        preparedStatement.setDouble(14, employee.getSalary());
-        preparedStatement.setDate(15, Date.valueOf(employee.getHireDate()));
+        preparedStatement.setInt(5, employee.getBranch().getBranchId());
         preparedStatement.execute();
     }
 
     @Override
     public void edit(Employee employee) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE employees SET first_name=?, last_name=?, email=?, username=?, password=?, phone=?, address=?, birth_date=?, person_id=?, employee_id=?, employee_name=?, role=?, salary=?, hire_date=? WHERE id=?"
+            "UPDATE employees SET first_name=?, last_name=?, phone=?, email=?, branch_id=? WHERE employee_id=?"
         );
         preparedStatement.setString(1, employee.getFirstName());
         preparedStatement.setString(2, employee.getLastName());
-        preparedStatement.setString(3, employee.getEmail());
-        preparedStatement.setString(4, employee.getUserName());
-        preparedStatement.setString(5, employee.getPassword());
-        preparedStatement.setString(6, employee.getPhone());
-        preparedStatement.setString(7, employee.getAddress());
-        preparedStatement.setDate(8, Date.valueOf(employee.getBirthDate()));
-        preparedStatement.setInt(9, employee.getPersonId().getId());
-        preparedStatement.setInt(10, employee.getEmployeeId());
-        preparedStatement.setString(11, employee.getEmployeeName());
-        preparedStatement.setString(12, employee.getRole().name());
-        preparedStatement.setDouble(13, employee.getSalary());
-        preparedStatement.setDate(14, Date.valueOf(employee.getHireDate()));
-        preparedStatement.setInt(15, employee.getId());
+        preparedStatement.setString(3, employee.getPhone());
+        preparedStatement.setString(4, employee.getEmail());
+        preparedStatement.setInt(5, employee.getBranch().getBranchId());
+        preparedStatement.setInt(6, employee.getEmployeeId());
         preparedStatement.executeUpdate();
     }
 
     @Override
     public void delete(Integer id) throws Exception {
-        preparedStatement = connection.prepareStatement("DELETE FROM employees WHERE id=?");
+        preparedStatement = connection.prepareStatement("DELETE FROM employees WHERE employee_id=?");
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
     }
@@ -87,13 +68,26 @@ public class EmployeeRepository implements Repository<Employee, Integer>, AutoCl
     @Override
     public Employee findById(Integer id) throws Exception {
         Employee employee = null;
-        preparedStatement = connection.prepareStatement("SELECT * FROM employees WHERE id=?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM employees WHERE employee_id=?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             employee = employeeMapper.employeeMapper(resultSet);
         }
         return employee;
+    }
+
+    public List<Employee> findByBranchId(int branchId) throws Exception {
+        List<Employee> employees = new ArrayList<>();
+        preparedStatement = connection.prepareStatement(
+            "SELECT * FROM employees WHERE branch_id=?"
+        );
+        preparedStatement.setInt(1, branchId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            employees.add(employeeMapper.employeeMapper(resultSet));
+        }
+        return employees;
     }
 
     @Override

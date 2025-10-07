@@ -22,26 +22,27 @@ public class RoomRepository implements Repository<Room, Integer>, AutoCloseable 
     @Override
     public void save(Room room) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO rooms (room_id, type, status, price_per_night, capacity) VALUES (?, ?, ?, ?, ?)"
+            "INSERT INTO rooms (type, status, price_per_night, capacity, branch_id) VALUES (?, ?, ?, ?, ?)"
         );
-        preparedStatement.setInt(1, room.getRoomId());
-        preparedStatement.setString(2, room.getType().name());
-        preparedStatement.setString(3, room.getStatus().name());
-        preparedStatement.setDouble(4, room.getPricePerNight());
-        preparedStatement.setInt(5, room.getCapacity());
+        preparedStatement.setString(1, room.getType().name());
+        preparedStatement.setString(2, room.getStatus().name());
+        preparedStatement.setDouble(3, room.getPricePerNight());
+        preparedStatement.setInt(4, room.getCapacity());
+        preparedStatement.setInt(5, room.getBranch().getBranchId());
         preparedStatement.execute();
     }
 
     @Override
     public void edit(Room room) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE rooms SET type=?, status=?, price_per_night=?, capacity=? WHERE room_id=?"
+            "UPDATE rooms SET type=?, status=?, price_per_night=?, capacity=?, branch_id=? WHERE room_id=?"
         );
         preparedStatement.setString(1, room.getType().name());
         preparedStatement.setString(2, room.getStatus().name());
         preparedStatement.setDouble(3, room.getPricePerNight());
         preparedStatement.setInt(4, room.getCapacity());
-        preparedStatement.setInt(5, room.getRoomId());
+        preparedStatement.setInt(5, room.getBranch().getBranchId());
+        preparedStatement.setInt(6, room.getRoomId());
         preparedStatement.executeUpdate();
     }
 
@@ -73,6 +74,19 @@ public class RoomRepository implements Repository<Room, Integer>, AutoCloseable 
             room = roomMapper.roomMapper(resultSet);
         }
         return room;
+    }
+
+    public List<Room> findByBranchId(int branchId) throws Exception {
+        List<Room> rooms = new ArrayList<>();
+        preparedStatement = connection.prepareStatement(
+            "SELECT * FROM rooms WHERE branch_id=?"
+        );
+        preparedStatement.setInt(1, branchId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            rooms.add(roomMapper.roomMapper(resultSet));
+        }
+        return rooms;
     }
 
     @Override

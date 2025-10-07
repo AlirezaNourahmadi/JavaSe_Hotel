@@ -12,16 +12,18 @@ public final class BranchService {
 
     private BranchService() {}
 
-    public void save(Branch branch) throws Exception {
+    public Branch save(Branch branch) throws Exception {
         try(BranchRepository branchRepository = new BranchRepository()) {
             branchRepository.save(branch);
         }
+        return branch;
     }
 
-    public void update(Branch branch) throws Exception {
+    public Branch update(Branch branch) throws Exception {
         try(BranchRepository branchRepository = new BranchRepository()) {
             branchRepository.edit(branch);
         }
+        return branch;
     }
 
     public void delete(Integer id) throws Exception {

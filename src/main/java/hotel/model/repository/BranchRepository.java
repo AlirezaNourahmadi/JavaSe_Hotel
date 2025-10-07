@@ -67,7 +67,13 @@ public class BranchRepository implements Repository<Branch, Integer> , AutoClose
         );
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            branchList.add(branchMapper.branchMapper(resultSet));
+            Branch branch = branchMapper.branchMapper(resultSet);
+            try (EmployeeRepository employeeRepository = new EmployeeRepository();
+                 RoomRepository roomRepository = new RoomRepository()) {
+                branch.setEmployeeList(employeeRepository.findByBranchId(branch.getBranchId()));
+                branch.setRoomList(roomRepository.findByBranchId(branch.getBranchId()));
+            }
+            branchList.add(branch);
         }
         return branchList ;
     }
@@ -80,6 +86,11 @@ public class BranchRepository implements Repository<Branch, Integer> , AutoClose
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             branch = branchMapper.branchMapper(resultSet);
+            try (EmployeeRepository employeeRepository = new EmployeeRepository();
+                 RoomRepository roomRepository = new RoomRepository()) {
+                branch.setEmployeeList(employeeRepository.findByBranchId(branch.getBranchId()));
+                branch.setRoomList(roomRepository.findByBranchId(branch.getBranchId()));
+            }
         }
         return branch;
 

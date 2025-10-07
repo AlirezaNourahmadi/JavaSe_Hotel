@@ -22,7 +22,7 @@ public class Employee extends Person {
     private double salary;
     private LocalDate hireDate;
     private List<Task>  tasks = new ArrayList<>();
-
+    private Branch branch;
 
 
 

@@ -27,9 +27,7 @@ CREATE TABLE IF NOT EXISTS Hotels(
 
 CREATE TABLE IF NOT EXISTS Branches(
                                         branch_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-                                        address VARCHAR(300) NOT NULL,
-                                        room_list BIGINT ,
-                                        employee_list BIGINT
+                                        address VARCHAR(300) NOT NULL
 );
 
 CREATE TYPE room_status AS ENUM ('AVAILABLE', 'RESERVED', 'MAINTENANCE');
@@ -38,7 +36,8 @@ CREATE TABLE IF NOT EXISTS Rooms(
                                     type VARCHAR(100) NOT NULL,
                                     status room_status DEFAULT 'AVAILABLE',
                                     price_per_night INTEGER NOT NULL,
-                                    capacity INTEGER NOT NULL
+                                    capacity INTEGER NOT NULL,
+                                    branch_id INTEGER REFERENCES Branches(branch_id) ON DELETE CASCADE
 );
 
 CREATE TYPE payment_status AS ENUM ('PAYMENT', 'PAID', 'CANCELED');
@@ -96,7 +95,3 @@ CREATE TABLE IF NOT EXISTS Assignproperties(
                                                assigned_date DATE NOT NULL,
                                                assigned_by INTEGER NOT NULL REFERENCES Employees(employee_id)
 );
-
-
-
-

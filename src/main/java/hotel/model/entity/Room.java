@@ -18,6 +18,7 @@ public class Room {
     private RoomStatus status;
     private int pricePerNight;
     private int capacity;
+    private Branch branch;
 
 
    @Override
