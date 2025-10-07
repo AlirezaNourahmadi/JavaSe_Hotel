@@ -1,54 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controller.TaskController">
-    <children>
-        <VBox prefHeight="600.0" prefWidth="800.0">
-            <children>
-                <HBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Label text="Task ID:" />
-                        <TextField fx:id="taskIdText" />
-                        <Label text="Description:" />
-                        <TextField fx:id="descriptionText" />
-                        <Label text="Due Date:" />
-                        <DatePicker fx:id="dueDatePicker" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Label text="Assigned Employee ID:" />
-                        <TextField fx:id="assignedEmployeeIdText" />
-                        <Label text="Status:" />
-                        <TextField fx:id="statusText" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Button fx:id="saveButton" text="Save" />
-                        <Button fx:id="editButton" text="Edit" />
-                        <Button fx:id="deleteButton" text="Delete" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Label text="Search by Description:" />
-                        <TextField fx:id="findByDescriptionText" />
-                        <Label text="Search by ID:" />
-                        <TextField fx:id="findByIdText" />
-                    </children>
-                </HBox>
-                <TableView fx:id="taskTable">
-                    <columns>
-                        <TableColumn fx:id="taskIdColumn" text="Task ID" />
-                        <TableColumn fx:id="descriptionColumn" text="Description" />
-                        <TableColumn fx:id="dueDateColumn" text="Due Date" />
-                        <TableColumn fx:id="statusColumn" text="Status" />
-                    </columns>
-                </TableView>
-            </children>
-        </VBox>
-    </children>
-</AnchorPane>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="taskTable" layoutX="457.0" layoutY="99.0" prefHeight="400.0" prefWidth="595.0">
+         <columns>
+            <TableColumn fx:id="taskIdColumn" text="Task ID" />
+            <TableColumn fx:id="descriptionColumn" text="Description" />
+            <TableColumn fx:id="dueDateColumn" text="Due Date" />
+            <TableColumn fx:id="statusColumn" text="Status" />
+         </columns>
+      </TableView>
+      <GridPane layoutX="98.0" layoutY="86.0" prefHeight="400.0" prefWidth="332.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="155.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.16355895996094" minWidth="0.0" prefWidth="154.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Task ID:" />
+            <TextField fx:id="taskIdText" GridPane.columnIndex="1" />
+            <Label text="Description:" GridPane.rowIndex="1" />
+            <TextField fx:id="descriptionText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Due Date:" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dueDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Status:" GridPane.rowIndex="3" />
+            <TextField fx:id="statusText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Assigned Employee ID:" GridPane.rowIndex="4" />
+            <TextField fx:id="assignedEmployeeIdText" prefHeight="29.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" />
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" />
+      <HBox alignment="CENTER" layoutX="528.0" layoutY="507.0" prefHeight="26.0" prefWidth="463.0" spacing="10.0">
+         <children>
+            <Button fx:id="saveButton" text="Save" />
+            <Button fx:id="editButton" text="Edit" />
+            <Button fx:id="deleteButton" text="Delete" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="472.0" layoutY="42.0" prefHeight="26.0" prefWidth="572.0" spacing="10.0">
+         <children>
+            <Label text="Search by Description:" />
+            <TextField fx:id="findByDescriptionText" />
+            <Label text="Search by ID:" />
+            <TextField fx:id="findByIdText" />
+         </children>
+      </HBox>
+      <Text layoutX="93.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task View">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
