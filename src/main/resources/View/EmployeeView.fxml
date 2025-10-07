@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.EmployeeView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.controller.EmployeeController">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="ID:" />
+                        <TextField fx:id="idText" />
+                        <Label text="First Name:" />
+                        <TextField fx:id="firstNameText" />
+                        <Label text="Last Name:" />
+                        <TextField fx:id="lastNameText" />
+                        <Label text="Email:" />
+                        <TextField fx:id="emailText" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Username:" />
+                        <TextField fx:id="userNameText" />
+                        <Label text="Password:" />
+                        <TextField fx:id="passwordText" />
+                        <Label text="Phone:" />
+                        <TextField fx:id="phoneText" />
+                        <Label text="Address:" />
+                        <TextField fx:id="addressText" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Birth Date:" />
+                        <DatePicker fx:id="birthDatePicker" />
+                        <Label text="Person ID:" />
+                        <TextField fx:id="personIdText" />
+                        <Label text="Employee ID:" />
+                        <TextField fx:id="employeeIdText" />
+                        <Label text="Employee Name:" />
+                        <TextField fx:id="employeeNameText" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Role:" />
+                        <TextField fx:id="roleText" />
+                        <Label text="Salary:" />
+                        <TextField fx:id="salaryText" />
+                        <Label text="Hire Date:" />
+                        <DatePicker fx:id="hireDatePicker" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="saveButton" text="Save" />
+                        <Button fx:id="editButton" text="Edit" />
+                        <Button fx:id="deleteButton" text="Delete" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Search by Name:" />
+                        <TextField fx:id="findByNameText" />
+                        <Label text="Search by ID:" />
+                        <TextField fx:id="findByIdText" />
+                    </children>
+                </HBox>
+                <TableView fx:id="employeeTable">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" />
+                        <TableColumn fx:id="firstNameColumn" text="First Name" />
+                        <TableColumn fx:id="lastNameColumn" text="Last Name" />
+                        <TableColumn fx:id="emailColumn" text="Email" />
+                        <TableColumn fx:id="userNameColumn" text="Username" />
+                        <TableColumn fx:id="phoneColumn" text="Phone" />
+                        <TableColumn fx:id="addressColumn" text="Address" />
+                        <TableColumn fx:id="birthDateColumn" text="Birth Date" />
+                        <TableColumn fx:id="employeeNameColumn" text="Employee Name" />
+                        <TableColumn fx:id="roleColumn" text="Role" />
+                        <TableColumn fx:id="salaryColumn" text="Salary" />
+                        <TableColumn fx:id="hireDateColumn" text="Hire Date" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
