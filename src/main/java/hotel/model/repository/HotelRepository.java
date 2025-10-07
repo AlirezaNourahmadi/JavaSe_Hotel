@@ -80,6 +80,18 @@ public class HotelRepository implements Repository<Hotel, Integer> ,AutoCloseabl
         }
         return hotel;
     }
+    public List<Hotel> findByName(String name) throws Exception {
+        List<Hotel> hotels = new java.util.ArrayList<>();
+        preparedStatement = connection.prepareStatement(
+                "SELECT * FROM hotels WHERE name=?"
+        );
+        preparedStatement.setString(1, name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            hotels.add(hotelMapper.hotelMapper(resultSet));
+        }
+        return hotels;
+    }
 
     @Override
     public void close() throws Exception {

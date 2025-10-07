@@ -48,6 +48,11 @@ public final class HotelService {
             return hotelRepository.findAll();
         }
     }
+    public List<Hotel> findByName(String name) throws Exception {
+        try (HotelRepository hotelRepository = new HotelRepository()) {
+            return hotelRepository.findByName(name);
+        }
+    }
 
 }
 

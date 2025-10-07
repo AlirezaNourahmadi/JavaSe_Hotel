@@ -63,6 +63,7 @@ public class PersonController implements Initializable {
                 Person person =
                         Person
                                 .builder()
+                                .id(Integer.parseInt(idText.getText()))
                                 .firstName(nameText.getText())
                                 .lastName(familyText.getText())
                                 .birthDate(birthDateText.getValue())
@@ -79,7 +80,7 @@ public class PersonController implements Initializable {
                 resetForm();
             } catch (Exception e) {
 
-                log.error("Person Save Failed " + e.getMessage());
+                log.error("Person Save Failed {}", e.getMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error Saving Data !!!", ButtonType.OK);
                 alert.show();
 
@@ -107,7 +108,7 @@ public class PersonController implements Initializable {
                 alert.show();
                 resetForm();
             } catch (Exception e) {
-                log.error("Person Edit Failed " + e.getMessage());
+                log.error("Person Edit Failed {}", e.getMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error Editing Data !!!", ButtonType.OK);
                 alert.show();
 
@@ -122,7 +123,7 @@ public class PersonController implements Initializable {
                 alert.show();
                 resetForm();
             } catch (Exception e) {
-                log.error("Person Delete Failed " + e.getMessage());
+                log.error("Person Delete Failed {}", e.getMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error Deleting Data !!!", ButtonType.OK);
                 alert.show();
 
@@ -195,11 +196,11 @@ public class PersonController implements Initializable {
     public void searchByNameAndFamily () {
         try {
             showDateOnTable(PersonService.getService().findByNameAndFamily(searchNameText.getText(), searchFamilyText.getText()));
-            log.info("Persons FindByNameAndFamily :" + searchNameText.getText() + " " + searchFamilyText.getText());
+            log.info("Persons FindByNameAndFamily :{} {}", searchNameText.getText(), searchFamilyText.getText());
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error Searching Data !!!", ButtonType.OK);
             alert.show();
-            log.error("Person FindNameFamily " + searchNameText.getText() + " " + searchFamilyText.getText() + " Failed " + e.getMessage());
+            log.error("Person FindNameFamily {} {} Failed {}", searchNameText.getText(), searchFamilyText.getText(), e.getMessage());
         }
     }
 }
