@@ -203,7 +203,7 @@ public class EmployeeController implements Initializable {
                 Employee employee = EmployeeService.getService().findById(id);
                 showDataOnTable(employee != null ?
                         java.util.Collections.singletonList(employee) :
-                        new java.util.ArrayList<Employee>());
+                        new java.util.ArrayList<>());
             } else {
                 showDataOnTable(EmployeeService.getService().findAll());
             }

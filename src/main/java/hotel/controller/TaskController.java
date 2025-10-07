@@ -153,7 +153,7 @@ public class TaskController implements Initializable {
                 Task task = TaskService.getService().findById(id);
                 showDataOnTable(task != null ?
                         java.util.Collections.singletonList(task) :
-                        new java.util.ArrayList<Task>());
+                        new java.util.ArrayList<>());
             } else {
                 showDataOnTable(TaskService.getService().findAll());
             }

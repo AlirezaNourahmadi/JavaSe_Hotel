@@ -208,7 +208,7 @@ public class ManagerController implements Initializable {
                 Manager manager = ManagerService.getService().findById(id);
                 showDataOnTable(manager != null ?
                         java.util.Collections.singletonList(manager) :
-                        new java.util.ArrayList<Manager>());
+                        new java.util.ArrayList<>());
             } else {
                 showDataOnTable(ManagerService.getService().findAll());
             }
