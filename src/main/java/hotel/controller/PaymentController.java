@@ -2,58 +2,81 @@ package hotel.controller;
 
 import hotel.model.entity.Payment;
 import hotel.model.service.PaymentService;
-import lombok.Getter;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-import java.util.List;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PaymentController {
-    @Getter
-    private static final PaymentController controller = new PaymentController();
+public class PaymentController implements Initializable {
 
-    private PaymentController() {}
+    @FXML
+    private TextField idField;
 
-    public void save(Payment payment) {
+    @FXML
+    private TextField amountField; // Example field
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    @FXML
+    private void savePayment() {
         try {
+            Payment payment = new Payment();
+            payment.setReceiptId(Integer.parseInt(idField.getText()));
             PaymentService.getService().save(payment);
-            System.out.println("Payment saved successfully: " + payment);
+            showAlert("Success", "Payment saved successfully.");
         } catch (Exception e) {
-            System.out.println("Error saving payment: " + e.getMessage());
+            showAlert("Error", "Error saving payment: " + e.getMessage());
         }
     }
 
-    public void edit(Payment payment) {
+    @FXML
+    private void editPayment() {
         try {
+            Payment payment = new Payment();
+            payment.setReceiptId(Integer.parseInt(idField.getText()));
             PaymentService.getService().edit(payment);
-            System.out.println("Payment updated successfully: " + payment);
+            showAlert("Success", "Payment updated successfully.");
         } catch (Exception e) {
-            System.out.println("Error updating payment: " + e.getMessage());
+            showAlert("Error", "Error updating payment: " + e.getMessage());
         }
     }
 
-    public void delete(int paymentId) {
+    @FXML
+    private void deletePayment() {
         try {
-            PaymentService.getService().delete(paymentId);
-            System.out.println("Payment deleted with ID: " + paymentId);
+            int id = Integer.parseInt(idField.getText());
+            PaymentService.getService().delete(id);
+            showAlert("Success", "Payment deleted successfully.");
         } catch (Exception e) {
-            System.out.println("Error deleting payment: " + e.getMessage());
+            showAlert("Error", "Error deleting payment: " + e.getMessage());
         }
     }
 
-    public List<Payment> findAll() {
+    @FXML
+    private void loadPayment() {
         try {
-            return PaymentService.getService().findAll();
+            int id = Integer.parseInt(idField.getText());
+            Payment payment = PaymentService.getService().findById(id);
+            if (payment != null) {
+            } else {
+                showAlert("Info", "Payment not found.");
+            }
         } catch (Exception e) {
-            System.out.println("Error fetching payments: " + e.getMessage());
-            return null;
+            showAlert("Error", "Error loading payment: " + e.getMessage());
         }
     }
 
-    public Payment findById(int paymentId) {
-        try {
-            return PaymentService.getService().findById(paymentId);
-        } catch (Exception e) {
-            System.out.println("Error finding payment: " + e.getMessage());
-            return null;
-        }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

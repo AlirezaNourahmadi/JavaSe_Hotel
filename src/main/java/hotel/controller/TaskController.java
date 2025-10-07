@@ -2,58 +2,81 @@ package hotel.controller;
 
 import hotel.model.entity.Task;
 import hotel.model.service.TaskService;
-import lombok.Getter;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-import java.util.List;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TaskController {
-    @Getter
-    private static final TaskController controller = new TaskController();
+public class TaskController implements Initializable {
 
-    private TaskController() {}
+    @FXML
+    private TextField idField;
 
-    public void save(Task task) {
+    @FXML
+    private TextField descriptionField; // Example field
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    @FXML
+    private void saveTask() {
         try {
+            Task task = new Task();
+            task.setTaskId(Integer.parseInt(idField.getText()));
             TaskService.getService().save(task);
-            System.out.println("Task saved successfully: " + task);
+            showAlert("Success", "Task saved successfully.");
         } catch (Exception e) {
-            System.out.println("Error saving task: " + e.getMessage());
+            showAlert("Error", "Error saving task: " + e.getMessage());
         }
     }
 
-    public void edit(Task task) {
+    @FXML
+    private void editTask() {
         try {
+            Task task = new Task();
+            task.setTaskId(Integer.parseInt(idField.getText()));
             TaskService.getService().edit(task);
-            System.out.println("Task updated successfully: " + task);
+            showAlert("Success", "Task updated successfully.");
         } catch (Exception e) {
-            System.out.println("Error updating task: " + e.getMessage());
+            showAlert("Error", "Error updating task: " + e.getMessage());
         }
     }
 
-    public void delete(int taskId) {
+    @FXML
+    private void deleteTask() {
         try {
-            TaskService.getService().delete(taskId);
-            System.out.println("Task deleted with ID: " + taskId);
+            int id = Integer.parseInt(idField.getText());
+            TaskService.getService().delete(id);
+            showAlert("Success", "Task deleted successfully.");
         } catch (Exception e) {
-            System.out.println("Error deleting task: " + e.getMessage());
+            showAlert("Error", "Error deleting task: " + e.getMessage());
         }
     }
 
-    public List<Task> findAll() {
+    @FXML
+    private void loadTask() {
         try {
-            return TaskService.getService().findAll();
+            int id = Integer.parseInt(idField.getText());
+            Task task = TaskService.getService().findById(id);
+            if (task != null) {
+            } else {
+                showAlert("Info", "Task not found.");
+            }
         } catch (Exception e) {
-            System.out.println("Error fetching tasks: " + e.getMessage());
-            return null;
+            showAlert("Error", "Error loading task: " + e.getMessage());
         }
     }
 
-    public Task findById(int taskId) {
-        try {
-            return TaskService.getService().findById(taskId);
-        } catch (Exception e) {
-            System.out.println("Error finding task: " + e.getMessage());
-            return null;
-        }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
